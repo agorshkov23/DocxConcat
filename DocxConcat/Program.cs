@@ -19,10 +19,21 @@ namespace Alegor.DocxConcat
             {
                 application = new Application();
                 var document = application.Documents
-                .Open(Properties.InputDocumentPathList[Properties.BaseInputDocumentIndex]);
+                    .Open(Properties.InputDocumentPathList[Properties.BaseInputDocumentIndex]);
 
                 var selection = application.Selection;
                 selection.GoTo(WdGoToItem.wdGoToSection, WdGoToDirection.wdGoToFirst);
+
+                for (var i = Properties.BaseInputDocumentIndex - 1; i >= 0; i--)
+                {
+                    var inputDocumentPath = Properties.InputDocumentPathList[i];
+
+                    selection.WholeStory();
+                    selection.MoveLeft(WdUnits.wdCharacter, 1);
+                    selection.InsertParagraph();
+                    selection.MoveLeft(WdUnits.wdCharacter, 1);
+                    selection.InsertFile(inputDocumentPath);
+                }
 
                 for (var i = 0; i < Properties.InputDocumentPathList.Count; i++)
                 {
@@ -39,7 +50,10 @@ namespace Alegor.DocxConcat
                     }
                     else
                     {
-                        selection.GoTo(WdGoToItem.wdGoToSection, WdGoToDirection.wdGoToLast);
+                        selection.WholeStory();
+                        selection.MoveRight(WdUnits.wdCharacter, 1);
+                        selection.InsertParagraph();
+                        selection.MoveRight(WdUnits.wdCharacter, 1);
                         selection.InsertFile(inputDocumentPath);
                     }
 
