@@ -22,15 +22,16 @@ namespace Alegor.DocxConcat
                     .Open(Properties.InputDocumentPathList[Properties.BaseInputDocumentIndex]);
 
                 var selection = application.Selection;
-                selection.GoTo(WdGoToItem.wdGoToSection, WdGoToDirection.wdGoToFirst);
 
+                //  Вставка документов перед
                 for (var i = Properties.BaseInputDocumentIndex - 1; i >= 0; i--)
                 {
                     var inputDocumentPath = Properties.InputDocumentPathList[i];
 
                     selection.WholeStory();
-                    selection.MoveLeft(WdUnits.wdCharacter, 1);
-                    selection.InsertParagraph();
+                    //Не требуется, так как добавляет лишние пустые строки
+                    //selection.MoveLeft(WdUnits.wdCharacter, 1);
+                    //selection.InsertParagraph();
                     selection.MoveLeft(WdUnits.wdCharacter, 1);
                     selection.InsertFile(inputDocumentPath);
                 }
