@@ -58,7 +58,7 @@ namespace Alegor.DocxConcat
             Console.WriteLine();
             Console.WriteLine("Using:");
             Console.WriteLine("    DocxConcat.exe ProjectFile");
-            Console.WriteLine("    DocxConcat.exe -GenerateProjectFile");
+            Console.WriteLine("    DocxConcat.exe -GenerateProjectFile DocxConcat.dcp");
 
             return 0;
         }

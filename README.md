@@ -6,4 +6,4 @@ Program to concatenate files of the docx format (Microsoft Office Word Document)
 
     DocxConcat.exe ProjectFile
 
-    DocxConcat.exe -GenerateProjectFile
+    DocxConcat.exe -GenerateProjectFile DocxConcat.dcp
