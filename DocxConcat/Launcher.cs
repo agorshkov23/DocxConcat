@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Reflection;
 using System.Runtime.Serialization.Json;
 
 namespace Alegor.DocxConcat
@@ -10,6 +11,11 @@ namespace Alegor.DocxConcat
 
         public static int Main(string[] args)
         {
+            var version = (Attribute.GetCustomAttribute(Assembly.GetEntryAssembly(), typeof(AssemblyInformationalVersionAttribute)) as AssemblyInformationalVersionAttribute)?.InformationalVersion;
+
+            Console.WriteLine("DocxConcat " + version);
+            Console.WriteLine();
+
             if (args.Length == 1)
             {
                 var serializerSettings = new DataContractJsonSerializerSettings()
@@ -54,8 +60,6 @@ namespace Alegor.DocxConcat
                 return 0;
             }
 
-            Console.WriteLine("DocxConcat");
-            Console.WriteLine();
             Console.WriteLine("Using:");
             Console.WriteLine("    DocxConcat.exe ProjectFile");
             Console.WriteLine("    DocxConcat.exe -GenerateProjectFile DocxConcat.dcp");
